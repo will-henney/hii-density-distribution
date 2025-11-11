@@ -1,0 +1,24 @@
+* Distribution of densities in H II regions
++ Collaboration with Eduardo to see how the high-density tail of the ionized density distribution in H II regions might be affecting line ratio density diagnostics
+** We will use the Orion Nebula as a benchmark
++ Estimate the full density PDF from a combination of empirical and modeling techniques
+*** High density tail will come from proplyds
+**** Generate a single-proplyd PDF
+- based on N(r, \theta) laws from Dyson models
+- With scale factors (n_0, r_0), the peak density and i-front radius
+**** Integrate over known distributions of proplyd parameters
++ Size distribution from Henney & Arthur, or Vicente (although those are overestimates) or Tsamis:2013a or one of the more recent papers like Ballering:2023a or Boyden:2025a
+  + Boyden find r_0 \approx (12 AU) 10**{R / 0.05 pc} which is bizarre
+  + This means that the solid angle increases with R, which gives an increased influence of the further proplyds
+  + But this cannot carry on forever. They only fit it over range 0 to 0.06 pc (30 arcsec), for which their largest radius is 100 AU
+    + So at that point, r/R ~ 0.01, so \theta ~ 0.01 rad = 0.6 deg
+    + \Omega / 4 pi = 0.5 (1 - cos(0.6 deg)) = \theta^2 / 4 = 2.5e-5
+    + So even with 200 proplyds, we only get a total of 5e-3, so 0.5% of the total emission measure. /And that is probably an overestimate/
+  + Vicente:2005a is bad for the close-in disks, but should be better for the further out ones. The chord diameter maxes out at about 1 arcsec for R > 100 arcsec (0.2 pc), which corresponds to radius of about 200 AU
++ Peak density distribution from same sources, or just use the theoretical value (note that Boyden densities are wrong)
++ Spatial proplyd distribution can come directly from catalogs like Ricci:2008a
+  + Or we can use the fits from Henney & Arthur, although these are only validated over the inner part
+*** Medium densities from globule/filament flows
++ This could be treated in a similar way
++ But we need to account for the finite cavity size (if globules are near Stromgren radius)
+
