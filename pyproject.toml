@@ -1,0 +1,12 @@
+[project]
+name = "hii-density-distribution"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyterlab>=4.4.10",
+    "matplotlib>=3.10.7",
+    "numpy>=2.3.4",
+    "seaborn>=0.13.2",
+]

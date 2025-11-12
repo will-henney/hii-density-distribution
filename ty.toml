@@ -1,0 +1,3 @@
+[rules]
+# Allow use of TypeVar where ty cannot figure out that ** is supported
+unsupported-operator = "ignore"
