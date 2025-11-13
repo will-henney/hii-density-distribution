@@ -1,5 +1,15 @@
 * Distribution of densities in H II regions
 + Collaboration with Eduardo to see how the high-density tail of the ionized density distribution in H II regions might be affecting line ratio density diagnostics
+
+
+** Advances Tue/Wed 11/12 November
+
+*** Handwritten notes on density PDF from photoevaporation flow
+- [[file:handwritten-notes-density-distribution-2025-11-12.pdf]]
+- I do the constant velocity wind case analytically
+- I construct the distribution function \(n H_n\), where H_n is the emissivity-weighted histogram of density values 
+  - This is the analogue of the SED: \(\nu F_\nu\)
+  - I call it the Density Energy Distribution  
 ** We will use the Orion Nebula as a benchmark
 + Estimate the full density PDF from a combination of empirical and modeling techniques
 *** High density tail will come from proplyds
@@ -21,4 +31,3 @@
 *** Medium densities from globule/filament flows
 + This could be treated in a similar way
 + But we need to account for the finite cavity size (if globules are near Stromgren radius)
-
