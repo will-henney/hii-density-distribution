@@ -4,6 +4,10 @@
 
 ** Advances Tue/Wed 11/12 November
 
+*** Notebook where I calculate the DED of a globule flow
+- [[file:density_pdf_explore.ipynb]]
+- I have an analytic solution for this in the constant velocity and Dyson-law cases
+  - [ ] At the moment, I am calculating \(d \ln U / d \ln R\) analytically, but I should be able to find a fully analytic form from what Roberto and I were calculating at the beginning of his maestría project
 *** Handwritten notes on density PDF from photoevaporation flow
 - [[file:handwritten-notes-density-distribution-2025-11-12.pdf]]
 - I do the constant velocity wind case analytically
@@ -31,3 +35,13 @@
 *** Medium densities from globule/filament flows
 + This could be treated in a similar way
 + But we need to account for the finite cavity size (if globules are near Stromgren radius)
+** Contribution of turbulence to the PDF
+- We could assume it is log-normal
+- But there is a very good discussion in Beattie:2022a as to why it cannot actually be log-normal at all scales
+- They show two alternative models that include intermittency
+  - compound log-Poisson model
+  - Langevin model
+- Both give an s-pdf with increasing negative skew as a parameter is increased
+  - intermittency for the log-Poisson model
+  - density-dependent timescales for Langevin (denser regions evolve faster)
+- [ ] I should revisit the notes I made on H II region turbulence for the t-squared project
