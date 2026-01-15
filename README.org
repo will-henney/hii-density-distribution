@@ -57,9 +57,14 @@
   Found all the simulation cubes
 :END:
 Use the cubes from the Sac paper
+*** Scripts to calculate the pdf
+Let's use marimo again for the initial exploration
+
 *** Where to find the simulation cubes
+
+**** TODO Original search for files
 - On my laptop:
-  - Original Garrelt cubes are now copied from the SS@-2TB to the local disk
+  - Original Garrelt cubes are now copied from the SSD-2TB to the local disk
     - [[file:../../Work/Garrelt/results-pdr/]]
     - Only one save time apparently (90,000 yrs)
   - Some Sac cubes in [[file:../OrionStats/bigdata/]]
@@ -71,3 +76,14 @@ Use the cubes from the Sac paper
 - On nas11
   - ~/fs/nas11/other0/will/Garrelt/results-sac~
   - This has everything - hurray!
+  - 
+
+** Figures for the paper
+
+*** Image showing different density structures in the simulation cubes
+- We can use the image ~rgb-NHO-04052012_4-evo-t0003-th135.0-ph135.0-n28-0022.png~
+- Have some hilight boxes that point out different structures
+  - small globules
+  - big globules with striated flows (point out that this is despite being pure HD)
+  - cavities formed by said flows
+  - extinction due to foreground filaments

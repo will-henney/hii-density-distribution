@@ -67,12 +67,12 @@ class Flow:
 
     def radial_density_histogram(
         self,
-        radii: np.ndarray[np.floating],
-        densities: np.ndarray[np.floating],
+        radii: NDArray[np.floating],
+        densities: NDArray[np.floating],
         nbins: int = 100,
         min_density: float = 0.0,
         density_scale: Literal["linear", "log"] = "linear",
-    ) -> NDArray[np.floating]:
+    ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
         """
         PDF histogram of density variation with radius, weighted by density-squared times volume element
 
