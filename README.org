@@ -7,13 +7,13 @@
 *** Notebook where I calculate the DED of a globule flow
 - [[file:density_pdf_explore.ipynb]]
 - I have an analytic solution for this in the constant velocity and Dyson-law cases
-  - [ ] At the moment, I am calculating \(d \ln U / d \ln R\) analytically, but I should be able to find a fully analytic form from what Roberto and I were calculating at the beginning of his maestría project
+  - [ ] At the moment, I am calculating \(d \ln U / d \ln R\) numerically, but I should be able to find a fully analytic form from what Roberto and I were calculating at the beginning of his maestría project
 *** Handwritten notes on density PDF from photoevaporation flow
 - [[file:handwritten-notes-density-distribution-2025-11-12.pdf]]
 - I do the constant velocity wind case analytically
 - I construct the distribution function \(n H_n\), where H_n is the emissivity-weighted histogram of density values 
   - This is the analogue of the SED: \(\nu F_\nu\)
-  - I call it the Density Energy Distribution  
+  - I call it the Density Energy Distribution (DED)
 ** We will use the Orion Nebula as a benchmark
 + Estimate the full density PDF from a combination of empirical and modeling techniques
 *** High density tail will come from proplyds
@@ -45,3 +45,29 @@
   - intermittency for the log-Poisson model
   - density-dependent timescales for Langevin (denser regions evolve faster)
 - [ ] I should revisit the notes I made on H II region turbulence for the t-squared project
+** Effect of radiation pressure
+- The continuum radiation pressure and the line radiation pressure should both be considered
+** Two-dimensional correlation of density and ionization parameter
+*** Distribution of ionization parameter for a constant-density H II region
+** TODO Comparison with numerical simulations
+:LOGBOOK:
+- Note taken on [2026-01-15 Thu 08:25] \\
+  Returning to this project in January 2026
+- Note taken on [2026-01-15 Thu 08:46] \\
+  Found all the simulation cubes
+:END:
+Use the cubes from the Sac paper
+*** Where to find the simulation cubes
+- On my laptop:
+  - Original Garrelt cubes are now copied from the SS@-2TB to the local disk
+    - [[file:../../Work/Garrelt/results-pdr/]]
+    - Only one save time apparently (90,000 yrs)
+  - Some Sac cubes in [[file:../OrionStats/bigdata/]]
+    - We mainly just have emissivities such as [[file:../OrionStats/bigdata/04052012_4_0030e-Halpha.fits]]
+    - These are a much later times
+- On nil:
+  - ~/fs/nil/other0/will/results-sac~ has lots of cubes
+  - *But* it is missing the ionization fraction
+- On nas11
+  - ~/fs/nas11/other0/will/Garrelt/results-sac~
+  - This has everything - hurray!
