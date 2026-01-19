@@ -56,7 +56,9 @@ def _(MIN_IFRAC, cube, d_max, dmean_e, dmean_v, drms_v, dsig_v, mo):
 @app.cell
 def _(mo):
     mo.md(r"""
-    ## Plots
+    ## Plots of emission-weighted $n$-PDF and $\Upsilon$-PDF
+
+    Otherwise known as DED and IPED
     """)
     return
 
@@ -164,7 +166,7 @@ def _(Cube, cube, dmean_e, np, plt):
             origin="lower",
             aspect="auto",
             extent=[*drange, *Urange],
-            cmap="magma_r",
+            cmap="magma",
         )
         # ax.contour(HH.T, extent=[*drange, *Urange])
         ax.axvline(
@@ -180,7 +182,136 @@ def _(Cube, cube, dmean_e, np, plt):
         return fig
 
 
-    plot_hist2d(cube, gamma=3)
+    plot_hist2d(cube, gamma=4, bins=200)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    ## Plots of slices through the cube
+    """)
+    return
+
+
+@app.cell
+def _(np, plt):
+    from astropy.visualization import (
+        simple_norm,
+    )
+
+
+    def plot_cut_plane(
+        data,
+        plane="xy",
+        icut=256,
+        vmax=1.0,
+    ):
+        fig = plt.figure(figsize=(10, 10))
+        ax = fig.add_subplot()
+        if plane == "xy":
+            plane = data[icut, :, :]
+        elif plane == "xz":
+            plane = data[:, icut, :]
+        else:
+            plane = data[:, :, icut]
+        norm = simple_norm(
+            plane,
+            vmin=0,
+            vmax=vmax * np.max(data),
+            stretch="sqrt",
+        )
+        im = ax.imshow(
+            plane,
+            origin="lower",
+            norm=norm,
+            cmap="copper",
+        )
+        cb = fig.colorbar(im)
+        return fig
+
+
+    def plot_U_cut_plane(
+        data,
+        plane="xy",
+        icut=256,
+        vmax=1.0,
+    ):
+        fig = plt.figure(figsize=(10, 10))
+        ax = fig.add_subplot()
+        if plane == "xy":
+            plane = data[icut, :, :]
+        elif plane == "xz":
+            plane = data[:, icut, :]
+        else:
+            plane = data[:, :, icut]
+        norm = simple_norm(
+            plane,
+            vmin=-2,
+            vmax=6,
+            stretch="linear",
+        )
+        im = ax.imshow(
+            np.log10(plane),
+            origin="lower",
+            norm=norm,
+            cmap="PiYG",
+        )
+        cb = fig.colorbar(im)
+        return fig
+    return plot_U_cut_plane, plot_cut_plane
+
+
+@app.cell
+def _(mo):
+    ICUT = mo.ui.slider(
+        start=0,
+        stop=511,
+        step=1,
+        value=256,
+        orientation="vertical",
+        label="Slice",
+    )
+    VMAX = mo.ui.slider(
+        start=0,
+        stop=1.0,
+        step=0.01,
+        value=1.0,
+        orientation="vertical",
+        label="Max bright",
+    )
+    PLANE = mo.ui.dropdown(
+        options=["xy", "xz", "yz"],
+        value="xy",
+        label="Orientation",
+    )
+    return ICUT, PLANE, VMAX
+
+
+@app.cell
+def _(ICUT, PLANE, VMAX, cube, mo, plot_cut_plane):
+    mo.hstack(
+        [
+            plot_cut_plane(
+                cube.di,
+                plane=PLANE.value,
+                icut=ICUT.value,
+                vmax=VMAX.value,
+            ),
+            mo.vstack([PLANE, ICUT, VMAX]),
+        ]
+    )
+    return
+
+
+@app.cell
+def _(ICUT, PLANE, VMAX, cube, plot_U_cut_plane):
+    plot_U_cut_plane(
+        cube.U,
+        plane=PLANE.value,
+        icut=ICUT.value,
+        vmax=0.0001 * VMAX.value,
+    )
     return
 
 
