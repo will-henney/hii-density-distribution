@@ -298,7 +298,12 @@ def _(ICUT, PLANE, VMAX, cube, mo, plot_cut_plane):
                 icut=ICUT.value,
                 vmax=VMAX.value,
             ),
-            mo.vstack([PLANE, ICUT, VMAX]),
+            mo.vstack(
+                [PLANE, ICUT, VMAX],
+                align="center",
+                justify="center",
+                gap=2,
+            ),
         ]
     )
     return
