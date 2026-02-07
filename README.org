@@ -110,6 +110,13 @@ Let's use marimo again for the initial exploration
   - This has everything - hurray!
   - 
 
+** Extension of the globule-plus-Stromgren-sphere model
+- We can add the stellar wind (or cluster wind) bubble into the mix
+- From the Lancaster papers (or others), we have the factor \xi, which is the ratio of the wind bubble diameter to the Stromgren radius
+  - To find \xi they use a momentum-driven assumption but with a boost factor \alpha_p
+  - From the numerical simulations in Lancaster 2025 they get \alpha_p in the range 3 to 8
+  - This is due to an enhanced surface area of the contact discontinuity, modified by a slightly reduced velocity
+
 ** Figures for the paper
 
 *** Image showing different density structures in the simulation cubes
@@ -133,3 +140,24 @@ Let's use marimo again for the initial exploration
      - shows a nice variety of photoevaporation flows of different sizes
   2. t=15, xz, y=262 (0-based)
      - Ditto
+
+** Low filling factors in H II regions
+
+- Grazyna emailed to ask about this, but I am not sure that the empirical evidence is that great.
+- She mentions 3 cases
+  - Hodge 1013 in M101
+    - 6.5 Mpc away
+    - This is a giant H II region, but it is not very well resolved spatially
+    - Supposedly has \epsilon = 0.003
+      - rms density from 
+
+** PDF towards low densities and the DIG
+- In Orion, we have the EON, which has densities of order 100, so several sigma away from the mean density of the Huygens region
+- In general we have the DIG (Diffuse Ionized Gas), which supposedly represents about half of the integrated Ha emission from Galaxies
+  - E.g., McClymont:2024a
+  - In fact, the DIG is very different from the EON, and H II regions in general
+  - Density less than 10 pcc
+  - Ionizing spectrum is harder since it is more dominated by older stellar populations
+  - The half of the Ha emission statistic is only for /observed/ L(Ha)
+    - For the intrinsic L(Ha), it is only about 20%
+    - The difference is due to the higher extinction of the H II regions, plus the scattering contribution to the DIG
