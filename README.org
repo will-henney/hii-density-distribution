@@ -1,6 +1,9 @@
+#+PROPERTY: DIR ./README_att
+
 * Distribution of densities in H II regions
 + Collaboration with Eduardo to see how the high-density tail of the ionized density distribution in H II regions might be affecting line ratio density diagnostics
 + 
+
 
 
 ** Log of advances
@@ -110,6 +113,10 @@ Let's use marimo again for the initial exploration
   - This has everything - hurray!
   - 
 
+*** Calculate RMS and diagnostic densities from simulations
+- We can calculate the [S II] density and compare with the EM and mean radius to get a filling factor
+- Then we can compare that with the sort of values that Grazyna claims to be finding
+
 ** Extension of the globule-plus-Stromgren-sphere model
 - We can add the stellar wind (or cluster wind) bubble into the mix
 - From the Lancaster papers (or others), we have the factor \xi, which is the ratio of the wind bubble diameter to the Stromgren radius
@@ -141,23 +148,89 @@ Let's use marimo again for the initial exploration
   2. t=15, xz, y=262 (0-based)
      - Ditto
 
-** Low filling factors in H II regions
+** Prior papers on H II region density PDF
 
-- Grazyna emailed to ask about this, but I am not sure that the empirical evidence is that great.
+*** McClymont:2024a
+:PROPERTIES:
+:DIR: ./README_att
+:END:
+- This is mainly on the DIG [[id:EFF5822F-BCB6-4B16-91A5-91A1ECBD2F2F][see below]], but they also talk a bit about H II regions
+- The intrinsic L(Ha) PDF has two peaks
+  - The H II region peak is at about 1e3 with a FWHM of about 2 dex
+  - I need to calculate what that corresponds to in terms of \sigma_s or \sigma_\rho
+  - The extinction moves it a bit to the left
+#+ATTR_ORG: :align center :width 200
+[[attachment:McClymont 2024 Fig 6.png]]
+*** Kannan:2020a
+:PROPERTIES:
+:DIR: ./README_att
+:END:
+- This is on the same simulation as the McClymont paper
+- They also show PDFs but they are for mass and for volume, so they de-emphasize the H II regions
+- [[attachment:Kannan 2020 Fig 4.png]]
+- 
+
+** Low filling factors in H II regions
+:PROPERTIES:
+:ID:       8DEA6466-3AF5-4F59-9E68-61C121170E5E
+:END:
+
+- Grazyna emailed to ask about this, but I am not sure that the empirical evidence is that convincing for very low \epsilon.
 - She mentions 3 cases
-  - Hodge 1013 in M101
-    - 6.5 Mpc away
-    - This is a giant H II region, but it is not very well resolved spatially
-    - Supposedly has \epsilon = 0.003
-      - rms density from 
+  1. Hodge 1013 in M101
+     - Stasinska:2013a
+     - 6.5 Mpc away
+     - This is a giant H II region, but it is not very well resolved spatially
+     - Supposedly has \epsilon = 0.003
+       - rms density from surface brightness
+       - compared with [S II] density to get filling factor
+  2. Markarian 71
+     - Luridiana:1999a
+     - Note that this is not NGC 2363, despite that it is called that in the Valentina paper and others
+     - Grazyna says filling factor of 0.003
+     - But Valentina has several models with \epsilon up to 0.1
+       - Since [S II] density is upper limit
+       - And she says that the best fits are for the higher filling factors
+     - There is a lot of recent work on this object, since it is a local analog of Green Pea Galaxies and/or Lyman-continuum Emitters
+       - Micheva:2017a :: MRK 71 / NGC 2366: THE NEAREST GREEN PEA ANALOG
+       - Komorova:2021a :: Emission-line Wings Driven by Lyman Continuum in the Green Pea Analog Mrk 71
+         - This one is particularly interesting. It proposes that the broad wings on Ha and [O III] are from a radiatively accelerated wind, and they claim that the high terminal velocity rules out dust, so it has to be Ly-c or Ly-alpha
+         - However, they seem to think that the Ly-c can directly accelerate neutral gas, which is not right, since it is all absorbed in the H II region
+         - Maybe Ly-alpha could do it, but the trouble with that is that the covering factor of the outflow has to be small, which would tend to burst the Ly-a bubble
+       - Smith:2023a :: HST FUV Spectroscopy of Super Star Cluster A in the Green Pea Analog Mrk 71: Revealing the Presence of Very Massive Stars
+  3. NGC 346
+     - Relano:2002a
+       - 
+
+** High filling factors in H II regions
+- McClain:2025a study thousands of H II regions in NGC 253 with MUSE
+  - Based on earlier paper Congiu:2025a
+- They find that the nebular size is universal, independent of the luminosity
+- Best fits to median profiles is double gaussian with deconvolved fwhm of 7 pc (30% of flux) and 30 pc (70% of flux)
+- They compare the s ii densities with the H alpha densities
+  - For Ha the median central density is 25 pcc, with values
+    - 124, 75, 51 for luminosity bins 8, 9, 10
+    - down to 10-20 in bins 1, 2, 3
+    - these are the true 3d peak
+  - For s ii they get peak densities of
+    - 26, 35, 69 for luminosity bins 8, 9, 10
+    - but these are projected peak
+  - They find that the s ii densities are smaller than H alpha densities
+- So this would give a filling factor larger than unity if taken at face value!
+- But we need to average the Ha density along the line of sight if we really want to compare them
 
 ** PDF towards low densities and the DIG
+:PROPERTIES:
+:ID:       EFF5822F-BCB6-4B16-91A5-91A1ECBD2F2F
+:END:
 - In Orion, we have the EON, which has densities of order 100, so several sigma away from the mean density of the Huygens region
 - In general we have the DIG (Diffuse Ionized Gas), which supposedly represents about half of the integrated Ha emission from Galaxies
   - E.g., McClymont:2024a
   - In fact, the DIG is very different from the EON, and H II regions in general
   - Density less than 10 pcc
   - Ionizing spectrum is harder since it is more dominated by older stellar populations
+    - Stars with ages up to 5 Myr mainly ionize H II regions
+    - Stars with ages 5-10 Myr and 100+ Myr are the most imp
   - The half of the Ha emission statistic is only for /observed/ L(Ha)
     - For the intrinsic L(Ha), it is only about 20%
     - The difference is due to the higher extinction of the H II regions, plus the scattering contribution to the DIG

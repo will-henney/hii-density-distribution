@@ -78,6 +78,7 @@ def _(cube, dmean_e, dmean_v, drms_v, np, plt, sns):
     _H, _ = np.histogram(
         cube.di_m,
         weights=cube.e_m,
+    #    weights=None,
         bins=bins,
         density=True,
     )
