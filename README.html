@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-06 Mon 20:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="William Henney" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+<!--/*--><![CDATA[/*><!--*/
+/* 18 Jan 2016: Modified from the stylesheet by Zhitao Gong on
+https://github.com/gongzhitaao/orgcss/
+ */
+
+body {
+    max-width: 100%;
+    margin: 1% 1%;
+    font: normal normal normal 16px/1.6em 'Open Sans', sans-serif;
+    color: #333;
+}
+
+@media all and (min-width: 95ex) {
+    body {
+        max-width: 95ex;
+        margin: 1% auto;
+    }
+
+    .creator {
+        float: right;
+    }
+}
+
+@media not all and (min-width: 110ex) {
+
+    .creator {
+        float: left;
+    }
+
+    p img {
+        width: 95%;
+    }
+}
+
+.title {
+    padding: .5em 0;
+    text-align: center;
+    color: black;
+}
+
+.subtitle {
+    font-size: medium;
+    font-weight: bold;
+    margin-top: 0;
+    text-align: center;
+}
+
+.abstract {
+    width: 80%;
+    margin: auto;
+    font-style: italic;
+}
+
+.abstract p:last-of-type:before {
+    content: "    ";
+    white-space: pre;
+}
+
+.status {
+    font-size: 90%;
+    margin: 2em auto;
+}
+
+[class^="section-number-"] {
+    margin-right: .5em;
+}
+
+#footnotes {
+    font-size: 90%;
+}
+
+.footpara {
+    display: inline;
+    margin: .2em auto;
+}
+
+.footdef {
+    margin-bottom: 1em;
+}
+
+.footdef sup {
+    padding-right: .5em;
+}
+
+a {
+    color: #527d9a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #003355;
+    border-bottom: 1px dotted;
+}
+
+p img {
+    vertical-align: middle;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #A5573E;
+    line-height: 1.6em;
+    font-family: 'Droid Serif', serif;
+}
+
+h4,h5,h6 {
+    font-size: 1em;
+}
+
+table {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 2px solid;
+}
+
+table td + td, table th + th {
+    border-left: 1px solid gray;
+}
+
+table tr {
+    border-top: 1px solid lightgray;
+}
+
+td,th {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+
+code {
+    padding: 2px 5px;
+    margin: auto 1px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    background-clip: padding-box;
+    color: #333;
+    font-size: 90%;
+}
+
+blockquote {
+    margin: 1em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;
+}
+
+kbd {
+    background-color: #f7f7f7;
+    font-size: 14px;
+    margin: 0 .1em;
+    padding: .1em .6em;
+}
+
+.figure {
+    padding: 1em;
+}
+
+.figure p {
+    text-align: center;
+}
+
+.todo {
+    color: red;
+    font-family: monospace;
+}
+
+.done {
+    color: green;
+    font-family: monospace;
+}
+
+.priority {
+    color: orange;
+    font-family: monospace;
+}
+
+.tag {
+    background-color: #eee;
+    font-family: monospace;
+    font-size: 80%;
+    font-weight: normal;
+    padding: 2px;
+}
+
+.timestamp {
+    color: #bebebe;
+}
+
+.timestamp-kwd {
+    color: #5f9ea0;
+}
+
+.org-right {
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.org-left {
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+}
+
+.org-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+#postamble p, #preamble p {
+    font-size: 90%;
+    margin: .2em;
+}
+
+p.verse {
+    margin-left: 3%;
+}
+
+pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    font-family: monospace;
+    margin: 1.2em;
+    padding: 8pt;
+}
+
+pre.src {
+    overflow: auto;
+    padding-top: 1.2em;
+    position: relative;
+    font-size: 90%;
+    color: #dcdccc;
+    background-color: #3f3f3f; 
+}
+
+pre.src:before {
+    background-color: gray;
+    border: 1px solid black;
+    display: none;
+    padding: 3px;
+    position: absolute;
+    right: 10px;
+    /* top: -10px; */
+}
+
+pre.src:hover:before {
+    display: inline;
+}
+
+pre.src-sh:before {
+    content: 'sh';
+}
+pre.src-bash:before {
+    content: 'bash';
+}
+pre.src-emacs-lisp:before {
+    content: 'Emacs Lisp';
+}
+pre.src-R:before {
+    content: 'R';
+}
+pre.src-python:before {
+    content: 'Python';
+}
+pre.src-org:before {
+    content: 'Org';
+}
+pre.src-c++:before {
+    content: 'C++';
+}
+pre.src-c:before {
+    content: 'C';
+}
+pre.src-html:before {
+    content: 'HTML'
+}
+
+caption.t-above {
+    caption-side: top;
+}
+
+caption.t-bottom {
+    caption-side: bottom;
+}
+
+th.org-right {
+    text-align: center;
+}
+
+th.org-left {
+    text-align: center;
+}
+
+th.org-center {
+    text-align: center;
+}
+
+td.org-right {
+    text-align: right;
+}
+
+td.org-left {
+    text-align: left;
+}
+
+td.org-center {
+    text-align: center;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.inlinetask {
+    background: #ffffcc;
+    border: 2px solid gray;
+    margin: 10px;
+    padding: 10px;
+}
+
+#org-div-home-and-up {
+    font-size: 70%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.linenr {
+    font-size: smaller;
+}
+
+.code-highlighted {
+    background-color: #ffff00;
+}
+
+#bibliography {
+    font-size: 90%;
+}
+
+#bibliography table {
+    width: 100%;
+}
+
+/* .org-info-js_info-navigation { */
+/*     border-style: none; */
+/* } */
+/* #org-info-js_console-label { */
+/*     font-size: 10px; */
+/*     font-weight: bold; */
+/*     white-space: nowrap; */
+/* } */
+/* .org-info-js_search-highlight { */
+/*     background-color: #ffff00; */
+/*     color: #000000; */
+/*     font-weight: bold; */
+/* } */
+/*]]>*/-->
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9b98abe">1. Distribution of densities in H II regions</a>
+<ul>
+<li><a href="#org513e8ca">1.1. Log of advances</a>
+<ul>
+<li><a href="#org210040e">1.1.1. Advances early January 2025</a></li>
+<li><a href="#orgc82fcdc">1.1.2. Advances Tue/Wed 11/12 November</a></li>
+</ul>
+</li>
+<li><a href="#orgbf062cc">1.2. We will use the Orion Nebula as a benchmark</a>
+<ul>
+<li><a href="#orgc5a3a96">1.2.1. High density tail will come from proplyds</a></li>
+<li><a href="#orged2635a">1.2.2. Medium densities from globule/filament flows</a></li>
+</ul>
+</li>
+<li><a href="#org2e5c770">1.3. Contribution of turbulence to the PDF</a></li>
+<li><a href="#org1a9ad42">1.4. <span class="todo TODO">TODO</span> Effect of radiation pressure</a></li>
+<li><a href="#orgb8817f5">1.5. Two-dimensional correlation of density and ionization parameter</a>
+<ul>
+<li><a href="#org2a31124">1.5.1. Ionization parameter from the numerical simulations</a></li>
+<li><a href="#org139e80c">1.5.2. Distribution of ionization parameter for a constant-density H II region</a></li>
+</ul>
+</li>
+<li><a href="#org1e85ab0">1.6. <span class="todo TODO">TODO</span> Comparison with numerical simulations</a>
+<ul>
+<li><a href="#orga1b44dd">1.6.1. Scripts to calculate the pdf</a></li>
+<li><a href="#org853a28c">1.6.2. Where to find the simulation cubes</a></li>
+<li><a href="#org75cad0d">1.6.3. Calculate RMS and diagnostic densities from simulations</a></li>
+</ul>
+</li>
+<li><a href="#orge2e74ff">1.7. Extension of the globule-plus-Stromgren-sphere model</a></li>
+<li><a href="#org38b46d6">1.8. Figures for the paper</a>
+<ul>
+<li><a href="#org6c3c843">1.8.1. Image showing different density structures in the simulation cubes</a></li>
+<li><a href="#org7f2b538">1.8.2. Figure showing cut planes through the simulations</a></li>
+<li><a href="#org7d55bd8">1.8.3. Other simulations of the turbulent H II regions</a></li>
+</ul>
+</li>
+<li><a href="#org6c8a8ae">1.9. Prior papers on H II region density PDF</a>
+<ul>
+<li><a href="#org6b83735">1.9.1. McClymont:2024a</a></li>
+<li><a href="#orgfb138de">1.9.2. Kannan:2020a</a></li>
+</ul>
+</li>
+<li><a href="#org413c5f9">1.10. Low filling factors in H II regions</a></li>
+<li><a href="#org303e9c2">1.11. High filling factors in H II regions</a></li>
+<li><a href="#org6268eae">1.12. PDF towards low densities and the DIG</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9b98abe" class="outline-2">
+<h2 id="org9b98abe"><span class="section-number-2">1.</span> Distribution of densities in H II regions</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Collaboration with Eduardo to see how the high-density tail of the ionized density distribution in H II regions might be affecting line ratio density diagnostics</li>
+<li></li>
+</ul>
+</div>
+<div id="outline-container-org513e8ca" class="outline-3">
+<h3 id="org513e8ca"><span class="section-number-3">1.1.</span> Log of advances</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org210040e" class="outline-4">
+<h4 id="org210040e"><span class="section-number-4">1.1.1.</span> Advances early January 2025</h4>
+<div class="outline-text-4" id="text-1-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgdad243d"></a>Marimo notebook where I calculate PDFs of simulations<br />
+<div class="outline-text-5" id="text-1-1-1-1">
+<ul class="org-ul">
+<li><a href="explore_sac_cubes.py">explore_sac_cubes.py</a></li>
+<li>This includes the PDF of the density and the ionization parameter</li>
+<li>There is a slight negative correlation between these, but much less than one might think</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgc82fcdc" class="outline-4">
+<h4 id="orgc82fcdc"><span class="section-number-4">1.1.2.</span> Advances Tue/Wed 11/12 November</h4>
+<div class="outline-text-4" id="text-1-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgd9e0f02"></a>Notebook where I calculate the DED of a globule flow<br />
+<div class="outline-text-5" id="text-1-1-2-1">
+<ul class="org-ul">
+<li><a href="density_pdf_explore.ipynb">density_pdf_explore.ipynb</a></li>
+<li>I have an analytic solution for this in the constant velocity and Dyson-law cases
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> At the moment, I am calculating \(d \ln U / d \ln R\) numerically, but I should be able to find a fully analytic form from what Roberto and I were calculating at the beginning of his maestría project</li>
+</ul></li>
+</ul>
+</div>
+</li>
+<li><a id="orgcbfc767"></a>Handwritten notes on density PDF from photoevaporation flow<br />
+<div class="outline-text-5" id="text-1-1-2-2">
+<ul class="org-ul">
+<li><a href="handwritten-notes-density-distribution-2025-11-12.pdf">handwritten-notes-density-distribution-2025-11-12.pdf</a></li>
+<li>I do the constant velocity wind case analytically</li>
+<li>I construct the distribution function \(n H_n\), where H<sub>n</sub> is the emissivity-weighted histogram of density values 
+<ul class="org-ul">
+<li>This is the analogue of the SED: \(\nu F_\nu\)</li>
+<li>I call it the Density Energy Distribution (DED)</li>
+</ul></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgbf062cc" class="outline-3">
+<h3 id="orgbf062cc"><span class="section-number-3">1.2.</span> We will use the Orion Nebula as a benchmark</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Estimate the full density PDF from a combination of empirical and modeling techniques</li>
+</ul>
+</div>
+<div id="outline-container-orgc5a3a96" class="outline-4">
+<h4 id="orgc5a3a96"><span class="section-number-4">1.2.1.</span> High density tail will come from proplyds</h4>
+<div class="outline-text-4" id="text-1-2-1">
+</div>
+<ol class="org-ol">
+<li><a id="org6630545"></a>Generate a single-proplyd PDF<br />
+<div class="outline-text-5" id="text-1-2-1-1">
+<ul class="org-ul">
+<li>based on N(r, &theta;) laws from Dyson models</li>
+<li>With scale factors (n<sub>0</sub>, r<sub>0</sub>), the peak density and i-front radius</li>
+</ul>
+</div>
+</li>
+<li><a id="org2f4e5ad"></a>Integrate over known distributions of proplyd parameters<br />
+<div class="outline-text-5" id="text-1-2-1-2">
+<ul class="org-ul">
+<li>Size distribution from Henney &amp; Arthur, or Vicente (although those are overestimates) or Tsamis:2013a or one of the more recent papers like Ballering:2023a or Boyden:2025a
+<ul class="org-ul">
+<li>Boyden find r<sub>0</sub> &asymp; (12 AU) 10**{R / 0.05 pc} which is bizarre</li>
+<li>This means that the solid angle increases with R, which gives an increased influence of the further proplyds</li>
+<li>But this cannot carry on forever. They only fit it over range 0 to 0.06 pc (30 arcsec), for which their largest radius is 100 AU
+<ul class="org-ul">
+<li>So at that point, r/R ~ 0.01, so &theta; ~ 0.01 rad = 0.6 deg</li>
+<li>&Omega; / 4 pi = 0.5 (1 - cos(0.6 deg)) = &theta;<sup>2</sup> / 4 = 2.5e-5</li>
+<li>So even with 200 proplyds, we only get a total of 5e-3, so 0.5% of the total emission measure. <i>And that is probably an overestimate</i></li>
+</ul></li>
+<li>Vicente:2005a is bad for the close-in disks, but should be better for the further out ones. The chord diameter maxes out at about 1 arcsec for R &gt; 100 arcsec (0.2 pc), which corresponds to radius of about 200 AU</li>
+</ul></li>
+<li>Peak density distribution from same sources, or just use the theoretical value (note that Boyden densities are wrong)</li>
+<li>Spatial proplyd distribution can come directly from catalogs like Ricci:2008a
+<ul class="org-ul">
+<li>Or we can use the fits from Henney &amp; Arthur, although these are only validated over the inner part</li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org84d14f4"></a>Spatial distribution of proplyds<br />
+<div class="outline-text-6" id="text-1-2-1-2-1">
+<ul class="org-ul">
+<li>Combine two distributions:
+<ol class="org-ol">
+<li>Spatial distribution of young stars</li>
+<li>Fraction of stars with disks</li>
+</ol></li>
+</ul>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="outline-container-orged2635a" class="outline-4">
+<h4 id="orged2635a"><span class="section-number-4">1.2.2.</span> Medium densities from globule/filament flows</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>This could be treated in a similar way</li>
+<li>But we need to account for the finite cavity size (if globules are near Stromgren radius)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e5c770" class="outline-3">
+<h3 id="org2e5c770"><span class="section-number-3">1.3.</span> Contribution of turbulence to the PDF</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>We could assume it is log-normal</li>
+<li>But there is a very good discussion in Beattie:2022a as to why it cannot actually be log-normal at all scales</li>
+<li>They show two alternative models that include intermittency
+<ul class="org-ul">
+<li>compound log-Poisson model</li>
+<li>Langevin model</li>
+</ul></li>
+<li>Both give an s-pdf with increasing negative skew as a parameter is increased
+<ul class="org-ul">
+<li>intermittency for the log-Poisson model</li>
+<li>density-dependent timescales for Langevin (denser regions evolve faster)</li>
+</ul></li>
+<li class="off"><code>[&#xa0;]</code> I should revisit the notes I made on H II region turbulence for the t-squared project</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1a9ad42" class="outline-3">
+<h3 id="org1a9ad42"><span class="section-number-3">1.4.</span> <span class="todo TODO">TODO</span> Effect of radiation pressure</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>The continuum radiation pressure and the line radiation pressure should both be considered</li>
+<li>One thing that we can do is to calculate the radiative force at different points on the simulation and compare with the thermal pressure gradients
+<ul class="org-ul">
+<li>We can use the single-scattering limit and then correct it with the force multiplier for Lyman alpha</li>
+<li>However, the H II gas itself is optically thin to the Lyman alpha (which is predominantly concentrated in the wings)
+<ul class="org-ul">
+<li>The main dynamical effect of the Lyman alpha will be on the expansion of the neutral gas</li>
+<li>And this is most efficient when the neutral gas fully covers the ionizing source</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb8817f5" class="outline-3">
+<h3 id="orgb8817f5"><span class="section-number-3">1.5.</span> Two-dimensional correlation of density and ionization parameter</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org2a31124" class="outline-4">
+<h4 id="org2a31124"><span class="section-number-4">1.5.1.</span> Ionization parameter from the numerical simulations</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
+<li>Currently, we are simply calculating x<sup>2</sup> / (1 - x), which is proportional to the ionization parameter so long as we have strict photoionization equilibrium</li>
+<li>In theory, we should be calculating it directly from the ionizing flux, but we do not seem to save those files</li>
+<li>We can calculate it using the FORTRAN routines in the cap-post repository
+<ul class="org-ul">
+<li></li>
+</ul></li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orge4a2a4e"></a>Calculation of neutral column density<br />
+<div class="outline-text-5" id="text-1-5-1-1">
+<p>
+This is now done by a new fortran program <code>cubecdn.f90</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-fish">set d /Users/will/Dropbox/cap-post/src
+for i in (seq 3 30)
+    set ii (printf "%02d" $i)
+    echo 04052012_4_00$ii | $d/cubecdn
+end
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org9b2bbbf"></a>Calculation of the "true" ionization parameter<br />
+<div class="outline-text-5" id="text-1-5-1-2">
+<ul class="org-ul">
+<li>The tricky thing about this is to take into account the hardening
+<ul class="org-ul">
+<li>For the time being we will ignore that</li>
+</ul></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org139e80c" class="outline-4">
+<h4 id="org139e80c"><span class="section-number-4">1.5.2.</span> Distribution of ionization parameter for a constant-density H II region</h4>
+</div>
+</div>
+<div id="outline-container-org1e85ab0" class="outline-3">
+<h3 id="org1e85ab0"><span class="section-number-3">1.6.</span> <span class="todo TODO">TODO</span> Comparison with numerical simulations</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Use the cubes from the Sac paper
+</p>
+</div>
+<div id="outline-container-orga1b44dd" class="outline-4">
+<h4 id="orga1b44dd"><span class="section-number-4">1.6.1.</span> Scripts to calculate the pdf</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+Let's use marimo again for the initial exploration
+</p>
+</div>
+</div>
+<div id="outline-container-org853a28c" class="outline-4">
+<h4 id="org853a28c"><span class="section-number-4">1.6.2.</span> Where to find the simulation cubes</h4>
+<div class="outline-text-4" id="text-1-6-2">
+</div>
+<ol class="org-ol">
+<li><a id="org68d88d8"></a><span class="todo TODO">TODO</span> Original search for files<br />
+<div class="outline-text-5" id="text-1-6-2-1">
+<ul class="org-ul">
+<li>On my laptop:
+<ul class="org-ul">
+<li>Original Garrelt cubes are now copied from the SSD-2TB to the local disk
+<ul class="org-ul">
+<li><a href="../../Work/Garrelt/results-pdr/">../../Work/Garrelt/results-pdr/</a></li>
+<li>Only one save time apparently (90,000 yrs)</li>
+</ul></li>
+<li>Some Sac cubes in <a href="../OrionStats/bigdata/">../OrionStats/bigdata/</a>
+<ul class="org-ul">
+<li>We mainly just have emissivities such as <a href="../OrionStats/bigdata/04052012_4_0030e-Halpha.fits">../OrionStats/bigdata/04052012_4_0030e-Halpha.fits</a></li>
+<li>These are a much later times</li>
+</ul></li>
+</ul></li>
+<li>On nil:
+<ul class="org-ul">
+<li><code>/fs/nil/other0/will/results-sac</code> has lots of cubes</li>
+<li><b>But</b> it is missing the ionization fraction</li>
+</ul></li>
+<li>On nas11
+<ul class="org-ul">
+<li><code>/fs/nas11/other0/will/Garrelt/results-sac</code></li>
+<li>This has everything - hurray!</li>
+<li></li>
+</ul></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org75cad0d" class="outline-4">
+<h4 id="org75cad0d"><span class="section-number-4">1.6.3.</span> Calculate RMS and diagnostic densities from simulations</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<ul class="org-ul">
+<li>We can calculate the [S II] density and compare with the EM and mean radius to get a filling factor</li>
+<li>Then we can compare that with the sort of values that Grazyna claims to be finding</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2e74ff" class="outline-3">
+<h3 id="orge2e74ff"><span class="section-number-3">1.7.</span> Extension of the globule-plus-Stromgren-sphere model</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>We can add the stellar wind (or cluster wind) bubble into the mix</li>
+<li>From the Lancaster papers (or others), we have the factor &xi;, which is the ratio of the wind bubble diameter to the Stromgren radius
+<ul class="org-ul">
+<li>To find &xi; they use a momentum-driven assumption but with a boost factor &alpha;<sub>p</sub></li>
+<li>From the numerical simulations in Lancaster 2025 they get &alpha;<sub>p</sub> in the range 3 to 8</li>
+<li>This is due to an enhanced surface area of the contact discontinuity, modified by a slightly reduced velocity</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org38b46d6" class="outline-3">
+<h3 id="org38b46d6"><span class="section-number-3">1.8.</span> Figures for the paper</h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-org6c3c843" class="outline-4">
+<h4 id="org6c3c843"><span class="section-number-4">1.8.1.</span> Image showing different density structures in the simulation cubes</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<ul class="org-ul">
+<li>We can use the image <code>rgb-NHO-04052012_4-evo-t0003-th135.0-ph135.0-n28-0022.png</code></li>
+<li>Have some hilight boxes that point out different structures
+<ul class="org-ul">
+<li>small globules</li>
+<li>big globules with striated flows (point out that this is despite being pure HD)</li>
+<li>cavities formed by said flows</li>
+<li>extinction due to foreground filaments</li>
+<li></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7f2b538" class="outline-4">
+<h4 id="org7f2b538"><span class="section-number-4">1.8.2.</span> Figure showing cut planes through the simulations</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<ul class="org-ul">
+<li>We can show the RGB image of the three emission processes
+<dl class="org-dl">
+<dt>Red</dt><dd>ionized mechanical dissipation rate</dd>
+<dt>Green</dt><dd>H alpha</dd>
+<dt>Blue</dt><dd>neutral mechanical dissipation rate</dd>
+</dl></li>
+<li>We could even try using better (non primary) colors to make it look less garish</li>
+<li>Also show the radial velocity on the PiYG diverging colormap</li>
+<li>Good cut planes to show:
+<ol class="org-ol">
+<li>t=25, order=312 (zx plane), y = 297 (1-based)
+<ul class="org-ul">
+<li>shows a nice variety of photoevaporation flows of different sizes</li>
+</ul></li>
+<li>t=15, xz, y=262 (0-based)
+<ul class="org-ul">
+<li>Ditto</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7d55bd8" class="outline-4">
+<h4 id="org7d55bd8"><span class="section-number-4">1.8.3.</span> Other simulations of the turbulent H II regions</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<ul class="org-ul">
+<li>Kim:2018a is very good;</li>
+<li>Shows results very similar to ours, but for more sophisticated models;
+<ul class="org-ul">
+<li>Self gravity</li>
+<li>Multiple stars</li>
+<li>Radiation pressure</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6c8a8ae" class="outline-3">
+<h3 id="org6c8a8ae"><span class="section-number-3">1.9.</span> Prior papers on H II region density PDF</h3>
+<div class="outline-text-3" id="text-1-9">
+</div>
+<div id="outline-container-org6b83735" class="outline-4">
+<h4 id="org6b83735"><span class="section-number-4">1.9.1.</span> McClymont:2024a</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<ul class="org-ul">
+<li>This is mainly on the DIG <a href="#org6268eae">see below</a>, but they also talk a bit about H II regions</li>
+<li>The intrinsic L(Ha) PDF has two peaks
+<ul class="org-ul">
+<li>The H II region peak is at about 1e3 with a FWHM of about 2 dex</li>
+<li>I need to calculate what that corresponds to in terms of &sigma;<sub>s</sub> or &sigma;<sub>&rho;</sub></li>
+<li>The extinction moves it a bit to the left</li>
+</ul></li>
+</ul>
+
+<div id="orgb8dca74" class="figure">
+<p><img src="file:///Users/will/Dropbox/hii-density-distribution/README_att/McClymont 2024 Fig 6.png" alt="McClymont 2024 Fig 6.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfb138de" class="outline-4">
+<h4 id="orgfb138de"><span class="section-number-4">1.9.2.</span> Kannan:2020a</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<ul class="org-ul">
+<li>This is on the same simulation as the McClymont paper</li>
+<li>They also show PDFs but they are for mass and for volume, so they de-emphasize the H II regions</li>
+<li><img src="file:///Users/will/Dropbox/hii-density-distribution/README_att/Kannan 2020 Fig 4.png" alt="Kannan 2020 Fig 4.png" /></li>
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org413c5f9" class="outline-3">
+<h3 id="org413c5f9"><span class="section-number-3">1.10.</span> Low filling factors in H II regions</h3>
+<div class="outline-text-3" id="text-1-10">
+<ul class="org-ul">
+<li>Grazyna emailed to ask about this, but I am not sure that the empirical evidence is that convincing for very low &epsilon;.</li>
+<li>She mentions 3 cases
+<ol class="org-ol">
+<li>Hodge 1013 in M101
+<ul class="org-ul">
+<li>Stasinska:2013a</li>
+<li>6.5 Mpc away</li>
+<li>This is a giant H II region, but it is not very well resolved spatially</li>
+<li>Supposedly has &epsilon; = 0.003
+<ul class="org-ul">
+<li>rms density from surface brightness</li>
+<li>compared with [S II] density to get filling factor</li>
+</ul></li>
+</ul></li>
+<li>Markarian 71
+<ul class="org-ul">
+<li>Luridiana:1999a</li>
+<li>Note that this is not NGC 2363, despite that it is called that in the Valentina paper and others</li>
+<li>Grazyna says filling factor of 0.003</li>
+<li>But Valentina has several models with &epsilon; up to 0.1
+<ul class="org-ul">
+<li>Since [S II] density is upper limit</li>
+<li>And she says that the best fits are for the higher filling factors</li>
+</ul></li>
+<li>There is a lot of recent work on this object, since it is a local analog of Green Pea Galaxies and/or Lyman-continuum Emitters
+<dl class="org-dl">
+<dt>Micheva:2017a</dt><dd>MRK 71 / NGC 2366: THE NEAREST GREEN PEA ANALOG</dd>
+<dt>Komorova:2021a</dt><dd>Emission-line Wings Driven by Lyman Continuum in the Green Pea Analog Mrk 71
+<ul class="org-ul">
+<li>This one is particularly interesting. It proposes that the broad wings on Ha and [O III] are from a radiatively accelerated wind, and they claim that the high terminal velocity rules out dust, so it has to be Ly-c or Ly-alpha</li>
+<li>However, they seem to think that the Ly-c can directly accelerate neutral gas, which is not right, since it is all absorbed in the H II region</li>
+<li>Maybe Ly-alpha could do it, but the trouble with that is that the covering factor of the outflow has to be small, which would tend to burst the Ly-a bubble</li>
+</ul></dd>
+<dt>Smith:2023a</dt><dd>HST FUV Spectroscopy of Super Star Cluster A in the Green Pea Analog Mrk 71: Revealing the Presence of Very Massive Stars</dd>
+</dl></li>
+</ul></li>
+<li>NGC 346
+<ul class="org-ul">
+<li>Relano:2002a (summary of paper)
+<ul class="org-ul">
+<li>Photoionization models for N66</li>
+<li>Mostly density bounded, 1-dimensional, spherical geometry</li>
+<li>Models with &epsilon; = 1 have ionization that is too high and local density that is too low (compared with observations)</li>
+<li>Best fit model is supposedly &epsilon; = 0.0127</li>
+<li>Ionization-bounded models, and plane-parallel models do not work so well</li>
+</ul></li>
+<li>My comments
+<ul class="org-ul">
+<li>I have written a paper on this region (<a href="https://ui.adsabs.harvard.edu/abs/2024MNRAS.529.1723H/abstract">https://ui.adsabs.harvard.edu/abs/2024MNRAS.529.1723H/abstract</a>) and have two more in various states of disarray (here is draft of one: <a href="https://www.dropbox.com/scl/fi/0j4r9ys9d0oxewgt4gjkh/smc-bow.pdf?rlkey=tsdzi5ymaumqe2uqvba9oki0b&amp;dl=0">https://www.dropbox.com/scl/fi/0j4r9ys9d0oxewgt4gjkh/smc-bow.pdf?rlkey=tsdzi5ymaumqe2uqvba9oki0b&amp;dl=0</a>).  This region is definitely not stellar-wind-dominated (there is a wind-driven bow shock around an O2 star, but this represents a small fraction of the total Ha emission).  On the other hand, the geometry is of molecular filaments with a rather small covering factor around the star cluster, so a lot of the photo ionized gas is in divergent photoevaporation flows.  This would also tend to give you a low filling factor if you tried to fit a spherical photoionization model to it.</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org303e9c2" class="outline-3">
+<h3 id="org303e9c2"><span class="section-number-3">1.11.</span> High filling factors in H II regions</h3>
+<div class="outline-text-3" id="text-1-11">
+<ul class="org-ul">
+<li>McClain:2025a study thousands of H II regions in NGC 253 with MUSE
+<ul class="org-ul">
+<li>Based on earlier paper Congiu:2025a</li>
+</ul></li>
+<li>They find that the nebular size is universal, independent of the luminosity
+<ul class="org-ul">
+<li>Luminosity bins from log<sub>10</sub> [L(Ha) / erg/s] = 35.8 (bin 1) to 38.05 (bin 10)
+<ul class="org-ul">
+<li>These are all extinction-corrected</li>
+<li>Orion has log L(Ha) = 37.2, which would be bin 7</li>
+</ul></li>
+</ul></li>
+<li><b>Criticism of their methods</b>
+<ul class="org-ul">
+<li>In my opinion, they are over fitting the H II region structure, resulting in many small regions within what should be a single larger region</li>
+<li>This is the reason that they get similar sizes for the different luminosity bins</li>
+</ul></li>
+
+<li>Best fits to median profiles is double gaussian with deconvolved fwhm of 7 pc (30% of flux) and 30 pc (70% of flux)</li>
+<li>They compare the s ii densities with the H alpha densities
+<ul class="org-ul">
+<li>For Ha the median central density is 25 pcc, with values
+<ul class="org-ul">
+<li>51, 75, 124 for luminosity bins 8, 9, 10</li>
+<li>down to 10-20 in bins 1, 2, 3</li>
+<li>these are the true 3d peak</li>
+</ul></li>
+<li>For s ii they get peak densities of
+<ul class="org-ul">
+<li>26, 35, 69 for luminosity bins 8, 9, 10</li>
+<li>but these are projected peak</li>
+</ul></li>
+<li>They find that the s ii densities are smaller than H alpha densities</li>
+</ul></li>
+<li>So this would give a filling factor larger than unity if taken at face value!</li>
+<li>But we need to average the Ha density along the line of sight if we really want to compare them
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> Need to calculate some simple models to see how the various densities compare</li>
+<li>But it doesn't look like the filling factors are going to come out to be small</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6268eae" class="outline-3">
+<h3 id="org6268eae"><span class="section-number-3">1.12.</span> PDF towards low densities and the DIG</h3>
+<div class="outline-text-3" id="text-1-12">
+<ul class="org-ul">
+<li>In Orion, we have the EON, which has densities of order 100, so several sigma away from the mean density of the Huygens region</li>
+<li>In general we have the DIG (Diffuse Ionized Gas), which supposedly represents about half of the integrated Ha emission from Galaxies
+<ul class="org-ul">
+<li>E.g., McClymont:2024a</li>
+<li>In fact, the DIG is very different from the EON, and H II regions in general</li>
+<li>Density less than 10 pcc</li>
+<li>Ionizing spectrum is harder since it is more dominated by older stellar populations
+<ul class="org-ul">
+<li>Stars with ages up to 5 Myr mainly ionize H II regions</li>
+<li>Stars with ages 5-10 Myr and 100+ Myr are the most imp</li>
+</ul></li>
+<li>The half of the Ha emission statistic is only for <i>observed</i> L(Ha)
+<ul class="org-ul">
+<li>For the intrinsic L(Ha), it is only about 20%</li>
+<li>The difference is due to the higher extinction of the H II regions, plus the scattering contribution to the DIG</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: William Henney</p>
+<p class="date">Created: 2026-04-06 Mon 20:16</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

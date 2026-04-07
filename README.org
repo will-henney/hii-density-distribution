@@ -45,6 +45,10 @@
 + Peak density distribution from same sources, or just use the theoretical value (note that Boyden densities are wrong)
 + Spatial proplyd distribution can come directly from catalogs like Ricci:2008a
   + Or we can use the fits from Henney & Arthur, although these are only validated over the inner part
+***** Spatial distribution of proplyds
+- Combine two distributions:
+  1. Spatial distribution of young stars
+  2. Fraction of stars with disks
 *** Medium densities from globule/filament flows
 + This could be treated in a similar way
 + But we need to account for the finite cavity size (if globules are near Stromgren radius)
@@ -148,6 +152,13 @@ Let's use marimo again for the initial exploration
   2. t=15, xz, y=262 (0-based)
      - Ditto
 
+*** Other simulations of the turbulent H II regions
+- Kim:2018a is very good;
+- Shows results very similar to ours, but for more sophisticated models;
+  - Self gravity
+  - Multiple stars
+  - Radiation pressure
+
 ** Prior papers on H II region density PDF
 
 *** McClymont:2024a
@@ -199,17 +210,31 @@ Let's use marimo again for the initial exploration
          - Maybe Ly-alpha could do it, but the trouble with that is that the covering factor of the outflow has to be small, which would tend to burst the Ly-a bubble
        - Smith:2023a :: HST FUV Spectroscopy of Super Star Cluster A in the Green Pea Analog Mrk 71: Revealing the Presence of Very Massive Stars
   3. NGC 346
-     - Relano:2002a
-       - 
+     - Relano:2002a (summary of paper)
+       - Photoionization models for N66
+       - Mostly density bounded, 1-dimensional, spherical geometry
+       - Models with \epsilon = 1 have ionization that is too high and local density that is too low (compared with observations)
+       - Best fit model is supposedly \epsilon = 0.0127
+       - Ionization-bounded models, and plane-parallel models do not work so well
+     - My comments
+       - I have written a paper on this region (https://ui.adsabs.harvard.edu/abs/2024MNRAS.529.1723H/abstract) and have two more in various states of disarray (here is draft of one: https://www.dropbox.com/scl/fi/0j4r9ys9d0oxewgt4gjkh/smc-bow.pdf?rlkey=tsdzi5ymaumqe2uqvba9oki0b&dl=0).  This region is definitely not stellar-wind-dominated (there is a wind-driven bow shock around an O2 star, but this represents a small fraction of the total Ha emission).  On the other hand, the geometry is of molecular filaments with a rather small covering factor around the star cluster, so a lot of the photo ionized gas is in divergent photoevaporation flows.  This would also tend to give you a low filling factor if you tried to fit a spherical photoionization model to it. 
+
 
 ** High filling factors in H II regions
 - McClain:2025a study thousands of H II regions in NGC 253 with MUSE
   - Based on earlier paper Congiu:2025a
 - They find that the nebular size is universal, independent of the luminosity
+  - Luminosity bins from log_10 [L(Ha) / erg/s] = 35.8 (bin 1) to 38.05 (bin 10)
+    - These are all extinction-corrected
+    - Orion has log L(Ha) = 37.2, which would be bin 7
+- *Criticism of their methods*
+  - In my opinion, they are over fitting the H II region structure, resulting in many small regions within what should be a single larger region
+  - This is the reason that they get similar sizes for the different luminosity bins
+    
 - Best fits to median profiles is double gaussian with deconvolved fwhm of 7 pc (30% of flux) and 30 pc (70% of flux)
 - They compare the s ii densities with the H alpha densities
   - For Ha the median central density is 25 pcc, with values
-    - 124, 75, 51 for luminosity bins 8, 9, 10
+    - 51, 75, 124 for luminosity bins 8, 9, 10
     - down to 10-20 in bins 1, 2, 3
     - these are the true 3d peak
   - For s ii they get peak densities of
@@ -218,6 +243,8 @@ Let's use marimo again for the initial exploration
   - They find that the s ii densities are smaller than H alpha densities
 - So this would give a filling factor larger than unity if taken at face value!
 - But we need to average the Ha density along the line of sight if we really want to compare them
+  - [ ] Need to calculate some simple models to see how the various densities compare
+  - But it doesn't look like the filling factors are going to come out to be small
 
 ** PDF towards low densities and the DIG
 :PROPERTIES:
