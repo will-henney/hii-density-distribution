@@ -8,14 +8,19 @@
 
 ** Log of advances
 
-*** Advances early January 2025
+*** Advances June 2026
+- [[file:density_diagnostic_trends.ipynb]]
+- Analytic model of trends in density diagnostics with max-sensitivity density
+- Power law PDF
+*** Advances early January 2026
+
 
 **** Marimo notebook where I calculate PDFs of simulations
 - [[file:explore_sac_cubes.py]]
 - This includes the PDF of the density and the ionization parameter
 - There is a slight negative correlation between these, but much less than one might think
 
-*** Advances Tue/Wed 11/12 November
+*** Advances Tue/Wed 11/12 November 2025
 
 **** Notebook where I calculate the DED of a globule flow
 - [[file:density_pdf_explore.ipynb]]
