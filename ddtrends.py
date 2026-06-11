@@ -39,7 +39,7 @@ class PowerLawPDF:
     Power-law density PDF with upper and lower bounds
     """
 
-    def __init__(self, m, nmin, nmax):
+    def __init__(self, m: float, nmin: float, nmax: float):
         """
         Parameters: slope `m`, density bounds `nmin`, `nmax`
         """
@@ -71,6 +71,32 @@ class PowerLawPDF:
         """
         # TODO
         ...
+
+    def nrms(self):
+        """
+        Calculate the RMS density of a bounded power-law distribution
+
+        This is always volume-weighted
+        """
+        mp1 = self.m + 1
+        mm1 = self.m - 1
+        n0, n1 = self.nmin, sef.nmax
+        n2mean = mm1 * (n1 ** mp1 - n0 ** mp1)
+        n2mean /= mp1 * (n1 **  mm1 - n0**mm1)
+        return np.sqrt(n2mean)
+
+   def nmean(self):
+        """
+        Calculate the volumetric mean density of a bounded power-law distribution
+
+        This is always volume-weighted
+        """
+        m = self.m
+        mm1 = self.m - 1
+        n0, n1 = self.nmin, sef.nmax
+        rslt = mm1 * (n1**np1 - n0**np1)
+        rslt /= mp1 * (n1**nm1 - n0**nm1)
+        return np.sqrt(n2mean)
 
     def ncentile(self, p, weighting: Literal["emission", "volume"] = "emission"):
         """
