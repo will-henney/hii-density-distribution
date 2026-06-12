@@ -13,6 +13,8 @@ from typing import Literal, get_args
 import numpy as np
 from scipy.special import hyp2f1
 
+import pandas as pd
+
 
 class DimensionlessRatio:
     """
@@ -64,13 +66,56 @@ class PowerLawPDF:
         # Note that hyp2f1 has a bug for the case of m = -1, where it returns NaNs
         return hyp2f1(1, self.m + 1, self.m + 2, -x)
 
-    def stats(self):
+    def nstats(self):
         """
-        Calculate different measures of the central density (variously weighted means and medians) and
-        the distribution width (stddev, clumping, intercentile range)
+        Calculate different measures of the central density (variously weighted means and medians)
         """
-        # TODO
-        ...
+        rslt = {}
+        rslt["Minimum density"] = self.nmin
+        rslt["Maximum density"] = self.nmax
+        rslt["Mean density"] = self.nmean()
+        rslt["RMS density"] = self.nrms()
+        rslt["Median density by volume"] = self.ncentile(50, "volume")
+        rslt["Median density by emission"] = self.ncentile(50, "emission")
+        rslt["05% quantile density by volume"] = self.ncentile(5, "volume")
+        rslt["05% quantile density by emission"] = self.ncentile(5, "emission")
+        rslt["95% quantile density by volume"] = self.ncentile(95, "volume")
+        rslt["95% quantile density by emission"] = self.ncentile(95, "emission")
+
+        return rslt
+
+    def wstats(self):
+        """
+        Calculate different measures of the distribution width (stddev, clumping, intercentile range)
+        """
+        rslt = {}
+        rslt["Standard deviation of density"] = np.sqrt(
+            self.nrms() ** 2 - self.nmean() ** 2
+        )
+        rslt["Clumping factor"] = self.nrms() ** 2 / self.nmean() ** 2
+        rslt["Dex interquantile range by volume 16-84"] = np.log10(
+            self.ncentile(84, "volume") / self.ncentile(16, "volume")
+        )
+        rslt["Dex interquantile range by volume 05-95"] = np.log10(
+            self.ncentile(95, "volume") / self.ncentile(5, "volume")
+        )
+        rslt["Dex interquantile range by emission 16-84"] = np.log10(
+            self.ncentile(84, "emission") / self.ncentile(16, "emission")
+        )
+        rslt["Dex interquantile range by emission 05-95"] = np.log10(
+            self.ncentile(95, "emission") / self.ncentile(5, "emission")
+        )
+        return rslt
+
+    def statistics_table(self):
+        """
+        Format the statistics as a pandas.Dataframe
+        """
+        table_rows = {"Slope, 𝛽": self.m, **self.nstats(), **self.wstats()}.items()
+        return pd.DataFrame(
+            data=table_rows,
+            columns=["Statistic", "Value"],
+        ).set_index("Statistic")
 
     def nrms(self):
         """
@@ -80,12 +125,13 @@ class PowerLawPDF:
         """
         mp1 = self.m + 1
         mm1 = self.m - 1
-        n0, n1 = self.nmin, sef.nmax
-        n2mean = mm1 * (n1 ** mp1 - n0 ** mp1)
-        n2mean /= mp1 * (n1 **  mm1 - n0**mm1)
-        return np.sqrt(n2mean)
+        n0, n1 = self.nmin, self.nmax
+        n2mean = mm1 * (n1**mp1 - n0**mp1)
+        n2mean /= mp1 * (n1**mm1 - n0**mm1)
+        # Cast to a normal float
+        return float(np.sqrt(n2mean))
 
-   def nmean(self):
+    def nmean(self):
         """
         Calculate the volumetric mean density of a bounded power-law distribution
 
@@ -93,10 +139,10 @@ class PowerLawPDF:
         """
         m = self.m
         mm1 = self.m - 1
-        n0, n1 = self.nmin, sef.nmax
-        rslt = mm1 * (n1**np1 - n0**np1)
-        rslt /= mp1 * (n1**nm1 - n0**nm1)
-        return np.sqrt(n2mean)
+        n0, n1 = self.nmin, self.nmax
+        rslt = mm1 * (n1**m - n0**m)
+        rslt /= m * (n1**mm1 - n0**mm1)
+        return rslt
 
     def ncentile(self, p, weighting: Literal["emission", "volume"] = "emission"):
         """
