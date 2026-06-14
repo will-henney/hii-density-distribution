@@ -78,7 +78,7 @@ class DimensionlessRatio:
     def ntilde(self, R):
         "Inverse function giving normalized density from normalized ratio"
         return (1 - R) / (self.delta * R - (1 / self.delta))
-
+        
 
 
 R = DimensionlessRatio()
@@ -176,6 +176,8 @@ sns.despine()
 # This form of PDF is found, for example, for a constant-velocity wind: $m = -1/2$ in spherical geometry and $m = -1$ in cylindical geometry. These are a crude approximations to the ionized photoevaporation flow from a molecular globule of filament, respectively. In general, H~II regions will be a combination of many such flows, plus the interactions between them, wind-driven shells, etc. The most appropriate value of $m$ is not obvious a priori, so we will leave it as a free parameter. 
 
 # For general $m$, the integrals can be found in terms of the hypergeometric function $_2F^1(a, b; c; z)$, but for integer and half-integer $m$ the solution can be written in terms of elementary functions, so we will consider some particular cases first.
+
+# ***Note that the paper uses $\beta$ for the slope instead of $m$***
 
 # #### Flat PDF, $m = 0$
 #
@@ -419,7 +421,7 @@ class ConcreteRatio:
         Inverse function to derive density from line ratio
         """
         return self.nM * self.Rtilde.ntilde(R / self.Rlo)
-
+        
 
 
 n_arr = np.geomspace(1, 1e5, 500)
@@ -484,6 +486,7 @@ sns.despine()
 
 # ### Implementation of PDF-integrated derived densities
 
+# +
 def apparent_density_powerlaw(R: ConcreteRatio, pdf: PowerLawPDF):
     """
     Find the apparent derived density from a PDF distribution, using a given line ratio diagnostic 
@@ -503,7 +506,9 @@ def apparent_density_powerlaw(R: ConcreteRatio, pdf: PowerLawPDF):
     assert R.Rhi <= R_apparent <= R.Rlo, "Derived ratio is out of bounds"
     # Invert the ratio to get the "observed" density
     return R.n(R_apparent)
-
+    
+    
+# -
 
 # Test it out for the line ratios that we plotted above. Add in the red/blue [O II] ratio to represent an intermediate $n_\mathcal{M}$ case.
 

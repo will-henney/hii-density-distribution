@@ -9,9 +9,13 @@
 ** Log of advances
 
 *** Advances June 2026
+
+**** Analytic model for trends
 - [[file:density_diagnostic_trends.ipynb]]
 - Analytic model of trends in density diagnostics with max-sensitivity density
 - Power law PDF
+**** LM fitting and MCMC analysis of analytic model
+- [[file:density_diagnostic_fit.ipynb]]
 *** Advances early January 2026
 
 

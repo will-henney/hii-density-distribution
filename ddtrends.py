@@ -159,6 +159,22 @@ class PowerLawPDF:
             return ((1.0 - f) * self.nmin**sp1 + f * self.nmax**sp1) ** (1 / sp1)
 
 
+def stats_from_plaw_params(paramlist: list[tuple[float, float, float]]) -> pd.DataFrame:
+    """
+    Input `paramlist` is list of (m, log_n0, log_n1) power-law pdf parameters
+
+    Output is dataframe comparing the statistics
+    """
+    return pd.concat(
+        [
+            PowerLawPDF(_m, 10**_logn0, 10**_logn1).statistics_table()
+            for _m, _logn0, _logn1 in paramlist
+        ],
+        axis=1,
+        ignore_index=True,
+    )
+
+
 class ConcreteRatio:
     """
     A concrete manifestation of the DimensionlessRatio model for a particular line pair
