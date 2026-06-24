@@ -376,9 +376,11 @@ fig.savefig("plaw-density-distribution-mcmc-corner-uniform.pdf")
 pdf = ddt.PowerLawPDF(-1.3, 10**1.5, 10**6.3)
 pdf.nrms()
 
+# + [markdown] jp-MarkdownHeadingCollapsed=true
 # ### Add the RMS density to the posterior distribution graph
 #
 # Add a new column to `samples` dataframe with nrms
+# -
 
 samples["log_nrms"] = samples.apply(
     lambda x: np.log10(
@@ -451,7 +453,7 @@ fig.tight_layout()
 # | Matter-bounded / leaky directions | various| $1.0\times10^{49}$ | 7000 | $3.14\times10^{-13}$ | $<9.8\times10^{1}$ | $<1.99$ | 0.18 | 0.1280 |
 #
 # With the help of ChatGPT, I have estimated the solid-angle fractions, $f_\Omega$ and area fractions on the sky $f_A$ for each region. 
-# * The $f_A$-weighted rms density distribution is appropriate for comparison with the Eduardo diagnostics study because he has used the median diagnostic ration over the face of the nebula. This is what we are approximating as $\log_{10} n_\text{rms} \sim 2.3 \pm 0.45$. 
+# * The $f_A$-weighted rms density distribution is appropriate for comparison with the Eduardo diagnostics study because he has used the median diagnostic ratio over the face of the nebula. This is what we are approximating as $\log_{10} n_\text{rms} \sim 2.3 \pm 0.45$. 
 # * The $f_\Omega$-weighted rms density distribution is relevant to the separation of the full 3D density fluctuations into angular and radial variations.
 #
 #
@@ -465,6 +467,22 @@ fig.tight_layout()
 # ```
 # log_n_rms ~ Normal(mu=2.3, sigma=0.45)
 # ```
+
+# + [markdown] jp-MarkdownHeadingCollapsed=true
+# #### Contribution of the proplyds
+#
+# In total, the solid-angle covering fraction of proplyds is about 0.001 and is dominated by the ten closest proplyds to the Trapezium.  The plane-of-sky area fraction is much lower at about 4e-7 and is dominated by the roughly 150 farther out proplyds. The RMS densities (over the full distance out to each proplyd) are up to about 1e5 pcc, whereas the peak densities (base of proplyd evaporation flow) are up to 5e6 pcc.
+#
+# | Proplyd subsample | Source/catalog basis | $N_{\rm fit/cat}$ | $N_{\rm corr}$ | $D$ range (pc) | Median $D$ (pc) | Median $r_{\rm IF,p}$ (pc) | $Q_{\rm eff}$ (s$^{-1}$) | $T_e$ (K) | $\alpha_{B,e}$ (cm$^3$ s$^{-1}$) | Median $n_{\rm rms,e}$ (cm$^{-3}$) | Median $\log_{10} n_{\rm rms,e}$ | Median $n_0$ (cm$^{-3}$) | Total $f_\Omega(\theta^1{\rm C})$ | Total $f_\Omega(\theta^2{\rm A})$ | Total $f_A$ |
+# |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+# | Close-in bright proplyds / LV knots: inner third | Henney & Arthur fitted sample | 10 | 11 | 0.007–0.031 | 0.023 | $1.38\times10^{-4}$ | $8.0\times10^{48}$ | 9000 | $2.63\times10^{-13}$ | $1.43\times10^{5}$ | 5.15 | $5.35\times10^{6}$ | $2.5\times10^{-4}$ | ... | $4.6\times10^{-8}$ |
+# | Close-in bright proplyds / LV knots: middle third | Henney & Arthur fitted sample | 10 | 11 | 0.033–0.060 | 0.043 | $1.57\times10^{-4}$ | $8.0\times10^{48}$ | 9000 | $2.63\times10^{-13}$ | $5.51\times10^{4}$ | 4.74 | $1.85\times10^{6}$ | $2.0\times10^{-4}$ | ... | $1.8\times10^{-7}$ |
+# | Close-in bright proplyds / LV knots: outer third | Henney & Arthur fitted sample | 9 | 10 | 0.063–0.132 | 0.083 | $3.95\times10^{-4}$ | $8.0\times10^{48}$ | 9000 | $2.63\times10^{-13}$ | $2.09\times10^{4}$ | 4.32 | $7.3\times10^{5}$ | $1.2\times10^{-4}$ | ... | $2.9\times10^{-7}$ |
+# | More distant ionized proplyds | Ricci et al. ACS proplyds outside H&A region, excluding 244–440 | 148 | 148 | 0.073–1.60 | 0.272 | $4.44\times10^{-4}$ | $8.0\times10^{48}$ | 9000 | $2.63\times10^{-13}$ | $3.50\times10^{3}$ | 3.54 | $\sim1.4\times10^{5}$ | $1.2\times10^{-4}$ | ... | $2.9\times10^{-6}$ |
+# | Giant proplyd 244--440 | Aru et al. MUSE; exceptional object, mainly $\theta^2$ Ori A irradiated | 1 | 1 | $0.31$ from $\theta^1$ C; $0.06$ from $\theta^2$ A | $0.06$ | $3.88\times10^{-3}$ | $5.7\times10^{48}$ | 9000 | $2.63\times10^{-13}$ | $2.9\times10^{4}$ | 4.46 | $\sim2$–$3\times10^{5}$ | $4.9\times10^{-5}$ | $1.3\times10^{-3}$ | $2.1\times10^{-6}$ |
+#
+#
+# -
 
 # ### Look at correlation with the PDF parameters in more detail
 #
@@ -515,16 +533,14 @@ sns.pairplot(
 #
 # The prior we are going to use is $\log_{10} n_\text{rms} = 2.3 \pm 0.45$ with a Gaussian pdf:
 # $$
-# \log_{10} n_\text{rms} \sim \mathcal{N}(2.3, 0.45^2)
+# \log_{10} n_\text{rms} \sim \mathcal{N}(\mu = 2.3, \sigma = 0.45)
 # $$
 #
 # Rather than redo the MCMC we will use the new prior as a weight for the posterior samples.  This should be fine since the support for the new prior is well within the range of the original one. 
 #
-# ***Disclaimer: the following cell was written in collaboration with ChatGPT***
+# ***Disclaimer: the following cell was originally written in collaboration with ChatGPT, although in the end I removed a lot of that code and simplified things***
 
 # +
-from scipy.stats import t, norm
-
 # arrays from your existing flattened chain
 
 m = samples["m"]
@@ -535,7 +551,8 @@ log_nrms = samples["log_nrms"]  # derived quantity already computed
 # proposed prior on log10(n_rms)
 mu = 2.3
 sigma = 0.45
-# PDF for a gaussian, ignoring constant subtractive terms since we normalize later
+# Evaluate log of weights for a Gaussian PDF 
+# ignoring constant subtractive terms since we normalize later after exponentiating
 logw = -0.5 * ((log_nrms - mu) / sigma)**2
 
 # stabilize and normalize

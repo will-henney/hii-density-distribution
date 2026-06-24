@@ -78,7 +78,7 @@ class DimensionlessRatio:
     def ntilde(self, R):
         "Inverse function giving normalized density from normalized ratio"
         return (1 - R) / (self.delta * R - (1 / self.delta))
-        
+
 
 
 R = DimensionlessRatio()
@@ -421,7 +421,7 @@ class ConcreteRatio:
         Inverse function to derive density from line ratio
         """
         return self.nM * self.Rtilde.ntilde(R / self.Rlo)
-        
+
 
 
 n_arr = np.geomspace(1, 1e5, 500)
@@ -486,7 +486,6 @@ sns.despine()
 
 # ### Implementation of PDF-integrated derived densities
 
-# +
 def apparent_density_powerlaw(R: ConcreteRatio, pdf: PowerLawPDF):
     """
     Find the apparent derived density from a PDF distribution, using a given line ratio diagnostic 
@@ -506,9 +505,7 @@ def apparent_density_powerlaw(R: ConcreteRatio, pdf: PowerLawPDF):
     assert R.Rhi <= R_apparent <= R.Rlo, "Derived ratio is out of bounds"
     # Invert the ratio to get the "observed" density
     return R.n(R_apparent)
-    
-    
-# -
+
 
 # Test it out for the line ratios that we plotted above. Add in the red/blue [O II] ratio to represent an intermediate $n_\mathcal{M}$ case.
 
