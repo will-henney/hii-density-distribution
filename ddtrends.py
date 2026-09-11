@@ -107,11 +107,35 @@ class PowerLawPDF:
         )
         return rslt
 
+    def fstats(self):
+        """
+        Calculate fraction of emission/volume above different density thresholds
+        """
+        rslt = {}
+        rslt["Emission fraction above 1e4 pcc"] = self.fraction_above(1e4)
+        rslt["Emission fraction above 1e5 pcc"] = self.fraction_above(1e5)
+        rslt["Emission fraction above 1e6 pcc"] = self.fraction_above(1e6)
+        rslt["Volume fraction above 1e4 pcc"] = self.fraction_above(
+            1e4, weighting="volume"
+        )
+        rslt["Volume fraction above 1e5 pcc"] = self.fraction_above(
+            1e5, weighting="volume"
+        )
+        rslt["Volume fraction above 1e6 pcc"] = self.fraction_above(
+            1e6, weighting="volume"
+        )
+        return rslt
+
     def statistics_table(self):
         """
         Format the statistics as a pandas.Dataframe
         """
-        table_rows = {"Slope, 𝛽": self.m, **self.nstats(), **self.wstats()}.items()
+        table_rows = {
+            "Slope, 𝛽": self.m,
+            **self.nstats(),
+            **self.wstats(),
+            **self.fstats(),
+        }.items()
         return pd.DataFrame(
             data=table_rows,
             columns=["Statistic", "Value"],
@@ -157,6 +181,28 @@ class PowerLawPDF:
         else:
             sp1 = s + 1
             return ((1.0 - f) * self.nmin**sp1 + f * self.nmax**sp1) ** (1 / sp1)
+
+    def fraction_above(self, nthresh, weighting="emission"):
+        """
+        Fraction of emission or volume above density threshold nthresh.
+        """
+        if nthresh <= self.nmin:
+            return 1.0
+        if nthresh >= self.nmax:
+            return 0.0
+
+        if weighting == "emission":
+            s = self.m
+        elif weighting == "volume":
+            s = self.m - 2.0
+        else:
+            raise ValueError(f"Unknown weighting: {weighting!r}")
+
+        if np.isclose(s, -1.0):
+            return np.log(self.nmax / nthresh) / np.log(self.nmax / self.nmin)
+
+        sp1 = s + 1.0
+        return (self.nmax**sp1 - nthresh**sp1) / (self.nmax**sp1 - self.nmin**sp1)
 
 
 def stats_from_plaw_params(paramlist: list[tuple[float, float, float]]) -> pd.DataFrame:
@@ -230,6 +276,50 @@ def apparent_density_powerlaw(R: ConcreteRatio, pdf: PowerLawPDF):
     return R.n(R_apparent)
 
 
+class BimodalPDF:
+    """
+    Bimodal density PDF
+    """
+
+    def __init__(self, frac: float, n0: float, n1: float):
+        """
+        Parameters: low density `n0`, high density `n1`, fraction of emission from high density `frac`
+        """
+        self.frac = frac
+        self.n0 = n0
+        self.n1 = n1
+        self.label = rf"$n_0 = {n0:.2g}$, $n_1 = {n1:.2g}$, $f = {frac:.2g}$"
+
+    def nrms(self):
+        """
+        Calculate the RMS density of a bimodal distribution
+
+        This is always volume-weighted
+        """
+        ff = self.frac / (1 - self.frac)
+        n0_n1 = self.n0 / self.n1
+        n2mean = self.n0**2 * (1 + ff) / (1 + n0_n1**2 * ff)
+        # Cast to a normal float
+        return float(np.sqrt(n2mean))
+
+
+def apparent_density_bimodal(R: ConcreteRatio, pdf: BimodalPDF):
+    """
+    Find the apparent derived density from a bimodal PDF distribution, using a given line ratio diagnostic
+    """
+    d = R.delta
+    nm = R.nM
+    n0 = pdf.n0
+    n1 = pdf.n1
+    f = pdf.frac
+    numerator = (1 - f) / (nm + d * n0) + f / (nm + d * n1)
+    denominator = (1 - f) / (nm + n0 / d) + f / (nm + n1 / d)
+    R_apparent = R.Rlo * numerator / denominator
+    assert R.Rhi <= R_apparent <= R.Rlo, "Derived ratio is out of bounds"
+    # Invert the ratio to get the "observed" density
+    return R.n(R_apparent)
+
+
 def n_obs_eduardo_fit(
     nM: ArrayLike, slope: float = 0.33, intercept: float = 1.34
 ) -> NDArray[np.floating]:
@@ -289,9 +379,16 @@ def n_obs_improved_fit(
 
 
 def n_app_from_nM(
-    nM: ArrayLike, pdf: PowerLawPDF, delta: ArrayLike | None = None
+    nM: ArrayLike, pdf: PowerLawPDF | BimodalPDF, delta: ArrayLike | None = None
 ) -> NDArray[np.floating]:
     """Vectorized version of apparent density"""
+    if isinstance(pdf, PowerLawPDF):
+        _apparent_density = apparent_density_powerlaw
+    elif isinstance(pdf, BimodalPDF):
+        _apparent_density = apparent_density_bimodal
+    else:
+        raise NotImplementedError
+
     if delta is None:
         # Vary with nM = 1e3 -> 1e7 as delta = 2 -> 200
         delta = 2.0 * np.sqrt(nM / 1e3)
@@ -300,7 +397,7 @@ def n_app_from_nM(
         delta = delta * np.ones_like(nM)
     return np.array(
         [
-            apparent_density_powerlaw(ConcreteRatio(_nM, delta=_delta), pdf)
+            _apparent_density(ConcreteRatio(_nM, delta=_delta), pdf)
             for _nM, _delta in zip(nM, delta)
         ]
     )

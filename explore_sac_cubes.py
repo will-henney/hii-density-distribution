@@ -1,7 +1,10 @@
 import marimo
 
 __generated_with = "0.19.2"
-app = marimo.App(width="medium")
+app = marimo.App(
+    width="medium",
+    layout_file="layouts/explore_sac_cubes.grid.json",
+)
 
 
 @app.cell
