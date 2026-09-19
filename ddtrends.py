@@ -11,7 +11,11 @@ William Henney, whenney@gmail.com, 2026
 from typing import Literal, get_args
 
 import numpy as np
-from scipy.special import hyp2f1
+from scipy.special import hyp2f1, erfc
+from scipy.integrate import quad
+from numpy.polynomial.legendre import leggauss
+from numpy.typing import ArrayLike, NDArray
+from functools import cache
 
 import pandas as pd
 
@@ -320,6 +324,144 @@ def apparent_density_bimodal(R: ConcreteRatio, pdf: BimodalPDF):
     return R.n(R_apparent)
 
 
+# Set up the gauss-legendre quadrature points
+@cache
+def gauss_legendre_nodes(nquad):
+    return leggauss(nquad)
+
+
+class LogNormalPDF:
+    """
+    Lognormal density PDF (truncated at low density)
+    """
+
+    def __init__(self, n0: float, nmu: float, wdex: float, nquad: int = 32):
+        """
+        Parameters: low density cutoff `n0`, density of PDF peak `nmu`, width of PDF in dex `wdex`
+        """
+        self.n0 = n0
+        self.nmu = nmu
+        self.wdex = wdex
+        self.label = rf"$n_0 = {n0:.2g}$, $n_\mu = {nmu:.2g}$, $w = {wdex:.2g}$"
+
+        self.nquad = nquad
+
+        # Natural log of parameters
+        self.logn_min = np.log(self.n0)
+        self.logn_mu = np.log(self.nmu)
+        self.sigma = self.wdex * np.log(10.0)
+        self.zmin = (self.logn_min - self.logn_mu) / self.sigma
+
+        # Normalization
+        self.A = 2.0 / erfc(self.zmin / np.sqrt(2.0)) / self.sigma / np.sqrt(2 * np.pi)
+
+    def __call__(self, n):
+        """Evaluate PDF for density `n` (may be scalar or array)"""
+        z = (np.log(n) - self.logn_mu) / self.sigma
+        return np.where(n >= self.n0, self.A * np.exp(-0.5 * z**2) / n, np.nan)
+
+    def I(self, nk):
+        """
+        Emission integrated over log-normal PDF of collisional line with critical density nk
+        """
+
+        def integrand(z):
+            n = np.exp(self.logn_mu + self.sigma * z)
+            return np.exp(-0.5 * z**2) / (1 + n / nk)
+
+        return quad(integrand, self.zmin, np.inf)[0]
+
+    def I_vec(self, nk: ArrayLike, nquad=None):
+        """Line-emission integral for one or more critical densities.
+
+        This uses an efficient gauss-legendre quadrature
+        """
+        nk = np.asarray(nk)
+
+        z0 = max(self.zmin, -8.0)
+        z1 = 8.0
+
+        half = 0.5 * (z1 - z0)
+        mid = 0.5 * (z1 + z0)
+
+        if nquad is None:
+            nquad = self.nquad
+
+        xq, wq = gauss_legendre_nodes(nquad)
+
+        z = mid + half * xq
+        qw = half * wq
+
+        weights = qw * np.exp(-0.5 * z**2)
+        n = np.exp(self.logn_mu + self.sigma * z)
+
+        deexcitation_factor = 1.0 / (1.0 + n[:, None] / np.atleast_1d(nk)[None, :])
+
+        result = weights @ deexcitation_factor
+
+        return result[0] if nk.ndim == 0 else result
+
+    def nrms(self):
+        """
+        Calculate the RMS density of a lognormal distribution
+
+        This is always volume-weighted
+        """
+        # TODO
+        ...
+
+
+def apparent_density_lognormal(R: ConcreteRatio, pdf: LogNormalPDF):
+    """
+    Find the apparent derived density from a lognormal PDF
+    distribution, using a given line ratio diagnostic
+    """
+    d = R.delta
+    nm = R.nM
+    n0 = pdf.n0
+    nmu = pdf.nmu
+
+    numerator = pdf.I(R.nM / R.delta)
+    denominator = pdf.I(R.nM * R.delta)
+    R_apparent = R.Rlo * numerator / denominator
+    assert R.Rhi <= R_apparent <= R.Rlo, "Derived ratio is out of bounds"
+    # Invert the ratio to get the "observed" density
+    return R.n(R_apparent)
+
+
+def apparent_density_lognormal_vec(
+    nM: ArrayLike,
+    delta: ArrayLike,
+    pdf: LogNormalPDF,
+) -> NDArray[np.floating]:
+    """Apparent densities for a lognormal density PDF.
+
+    This is an optimized version that calculates densities for
+    multiple diagnostics simultaneously and avoids use of
+    ConcreteRatio instances.  Note that delta must be passed
+    explicitly, unlike with n_app_from_nM()
+    """
+
+    nM = np.atleast_1d(nM)
+    delta = np.atleast_1d(delta)
+
+    # Critical densities for numerator and denominator lines
+    nk_num = nM / delta
+    nk_den = nM * delta
+
+    # Do all integrals in one quadrature call
+    nk = np.concatenate([nk_num, nk_den])
+    integrals = pdf.I_vec(nk)
+
+    N = nM.size
+    Rtilde = integrals[:N] / integrals[N:]
+
+    # Analytic inversion of the dimensionless line ratio
+    ntilde = (1.0 - Rtilde) / (delta * Rtilde - 1.0 / delta)
+
+    return nM * ntilde
+
+
 def n_obs_eduardo_fit(
     nM: ArrayLike, slope: float = 0.33, intercept: float = 1.34
 ) -> NDArray[np.floating]:
@@ -379,13 +521,17 @@ def n_obs_improved_fit(
 
 
 def n_app_from_nM(
-    nM: ArrayLike, pdf: PowerLawPDF | BimodalPDF, delta: ArrayLike | None = None
+    nM: ArrayLike,
+    pdf: PowerLawPDF | BimodalPDF | LogNormalPDF,
+    delta: ArrayLike | None = None,
 ) -> NDArray[np.floating]:
     """Vectorized version of apparent density"""
     if isinstance(pdf, PowerLawPDF):
         _apparent_density = apparent_density_powerlaw
     elif isinstance(pdf, BimodalPDF):
         _apparent_density = apparent_density_bimodal
+    elif isinstance(pdf, LogNormalPDF):
+        _apparent_density = apparent_density_lognormal
     else:
         raise NotImplementedError
 

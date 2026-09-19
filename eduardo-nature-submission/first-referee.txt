@@ -1,0 +1,92 @@
+Begin forwarded message:
+
+From: urmila.chadayammuri@nature.com
+Subject: Decision on Nature manuscript 2026-07-20598
+Date: 7 September 2026 at 10:26:10 a.m. CST
+To: jmendez@astro.unam.mx
+Reply-To: urmila.chadayammuri@nature.com
+
+7th September 2026
+
+*Please ensure you delete the link to your author home page in this e-mail if you wish to forward it to your co-authors. 
+
+Dear Dr Mendez-Delgado,
+
+Your manuscript, "There is no single density: star-forming regions and galaxies hold more dense ionized gas than long assumed", has now been seen by 4 referees, whose comments are attached below. While they find your work of potential interest, as indeed do we, they have raised substantial concerns that first need to be addressed before we can consider the paper further for possible publication in Nature.
+
+Both reports - one from authors who work on metallicity measurements in nebulae like Orion and the other from observers of high-redshift galaxies - find that at the moment the manuscript overstates its novelty and the potential breadth of impact. While they are impressed with the quality of the dataset and analysis, they also lay out an extensive array of tests to check for various systematics. Some of these analyses may strengthen some of the claims you have made; if they do not, the reviewers ask - and we agree - that you should soften the language in the manuscript accordingly. 
+
+In view of the additional analysis that are required to address these concerns, we appreciate that the necessary revisions will probably take some time. But let me assure you that we will nevertheless be happy to look at a revised manuscript (unless, of course, something similar has by then been accepted at Nature or appeared elsewhere).
+
+Please note also that we are committed to providing a fair and constructive peer-review process; do not hesitate to contact us if there are specific requests from the reviewers that you believe are technically impossible or unlikely to yield a meaningful outcome. I should stress, however, that we would be reluctant to trouble our referees again unless we thought their comments and any editorial issues had been responded to in full.
+
+In the meantime we hope that you find our referees' comments helpful, and please do not hesitate to get in touch if there is anything that you would like to discuss further. 
+
+Yours sincerely, 
+
+Dr Urmila Chadayammuri
+Associate Editor
+Nature.
+
+Referee expertise:
+
+Referees #1+2: modeling emission lines from photoionized gas at different ionization levels
+
+Referees #3+4: chemical and stellar evolution of star-forming galaxies, ground and space based observations
+
+
+Referees' comments: 
+
+Referee #1 (Remarks to the Author):
+
+The paper is very interesting, we enjoyed reading it, and we believe that it is certainly worthy of publication in a refereed astronomy journal, pending some major revisions. The Orion dataset is excellent, the analysis is ambitious, and the use of many density diagnostics in the same spatially resolved region is potentially very useful.
+
+However, in its present form, we are not convinced that the novelty and broader implications of the findings justify the emphasis given to them throughout the paper. Density stratification, as well as coupled variations of density, temperature and ionization within ionized nebulae, have been known for a long time and discussed in many previous works. This includes several studies already cited in the manuscript concerning the effects of unresolved density inhomogeneities on nebular diagnostics (e.g. refs. 7, 8, 32–35, but see also, e.g., Chustikov et al. 2026 for a simulative point of view).
+JWST has also brought renewed attention to these problems, in particular because UV, optical and infrared diagnostics often return different physical conditions (see, for instance, Topping et al. 2025, Harikane et al. 2025, Usui et al. 2025 as well as some of the above).
+
+In our view, the main new elements of this work are the introduction of the maximum-sensitivity density nM, the systematic analysis of the Orion LVM data, the empirical relation between nM and the inferred electron density in Orion, and the simultaneous use of a large number of diagnostics, including several ratios from the same ion. The disappearance of the hierarchy in the kinematically isolated Herbig–Haro components also provides an interesting additional test of the proposed interpretation.
+
+These are interesting and potentially useful results. However, the paper does not seem to constitute the fundamental revision of nebular spectroscopy claimed in the Abstract and Conclusions. Expressions such as "something more fundamental", "has resisted explanation" and "must be reconsidered" clearly overestimate, in our opinion, the conceptual advancement provided by the paper. The authors should substantially reconsider the framing and more clearly distinguish what was already known from what is specifically demonstrated here.
+
+1. The discussion of ionization stratification is too strong and sometimes misleading. The fact that different ratios from the same ion give different densities is an important result, and it shows that the simple interpretation in which each ion corresponds to one single density zone is not sufficient. However, this does not imply that ionization stratification is ruled out. Ionization, density and temperature are normally correlated in a real nebula. Moreover, different transitions from the same ion do not necessarily weight exactly the same spatial regions, especially when their critical densities and excitation energies are very different. They may originate from overlapping ionization zones, but with very different emissivity weighting inside those zones. Therefore, the result shows that ionization stratification alone cannot explain the full hierarchy, not that it is irrelevant or excluded. Statements such as "the two conventional explanations are ruled out" should be revised throughout the paper.
+
+2. The forward model is interesting and provides a clear illustration of the proposed mechanism. However, it only demonstrates that the assumptions adopted by the authors are consistent with the observed relation. It does not show that the adopted power-law emission-measure distribution is unique, or even that it is the most physically realistic description of Orion. The authors should test clearly different assumptions in order to understand how unique their solution is. For example, they could consider a lognormal density distribution, a two-component or multi-component model, and distributions depending jointly on ne and Te rather than only on density. The main point is not to explore small variations of the same model, but to test whether substantially different distributions can reproduce the same n versus nM relation. The authors should then state clearly which conclusions are robust and which depend on the adopted parametrization. In particular, the inferred fractions of emission measure above 10^4 or 10^5 cm^-3 appear model-dependent and should not be presented as direct observational measurements.
+
+3. The statistical interpretation of the ne-nM relation requires more discussion. The densities inferred from the different diagnostics are not fully independent because they depend on common assumptions on temperature, reddening, calibration and atomic data. This may be particularly important for the ratios with a strong temperature dependence. The authors use Te([N II]) for some diagnostics and 9000 +/- 2000 K for others. Could these prescriptions artificially reduce the scatter or introduce part of the observed trend? Some ratios become especially sensitive to temperature when the density approaches or exceeds the relevant critical density. The authors should repeat the analysis using different temperature assumptions and show how the slope, intercept and scatter of the relation change. It would also be useful to exclude, one at a time, the most temperature-sensitive diagnostics. The assumed uncertainty of 0.25 dex used in the Bayesian analysis should also be justified. It is not clear how this value relates to measurement uncertainties, atomic-data systematics, temperature uncertainties and covariance between diagnostics.
+
+4. The main Orion relation is based only on spaxels where all 16 diagnostics are detected with S/N > 3. This is a very strong selection and may introduce significant biases. Requiring detections of weak [Fe II] and [Fe III] lines may select high-surface-brightness regions, relatively low-extinction regions, regions with unusually strong iron emission, and regions with higher densities or particular ionization conditions. At the same time, low-density and low-surface-brightness gas may be excluded. This could contribute to making the relation tighter than it would be in the full nebula. The authors should test the robustness of the result by changing the S/N threshold, using different subsets of diagnostics over larger common spatial regions, analysing different spatial regions of Orion separately, and comparing the common 16-diagnostic footprint with the larger areas accessible to the strongest diagnostics. This is important to demonstrate that the tightness of the relation is physical and not partly produced by the sample selection.
+
+5. The discussion of gas masses, pressures, abundances, filling factors and feedback energetics is interesting, but at present it remains almost entirely qualitative. The paper would be much stronger if the authors included one or two quantitative examples. For instance, they could show how much an ionized gas mass, an abundance determination or an outflow rate changes when using the inferred density distribution instead of one single density from [S II] or another standard diagnostic. Without such examples, the broad statements about the impact on nebular spectroscopy and galaxy evolution appear too general compared with what is directly demonstrated.
+
+6. In our opinion, the strongest part of the paper is the Orion analysis. The inclusion of local and high-redshift galaxies in Fig. 2 appears less convincing and somewhat artificial. It is not clear that the points corresponding to different diagnostics are derived from the same objects. The availability of each line depends on spectral coverage, redshift, metallicity, ionization, signal-to-noise and observational setup. Therefore, comparing medians from different diagnostics may also mean comparing different galaxy populations. The high-redshift sample is particularly limited. There are now many JWST galaxies with high-quality rest-frame optical and, in some cases, UV spectroscopy, but only a very small and heterogeneous subset is used here (for instance in Berg et al. 2026 there are more diagnostics used than in the Topping et al. 2025 paper used by the authors. There are also other papers like Topping et al. 2025b (not the one used by the authors) and Rogers et al. 2026 with at least two diagnostics. Also there is a wealth of pre-JWST literature that could have been considered like Christensen et al. 2012, Bayliss et al. 2014, James et al 2014, Patricio et al. 2016, Mainali et al. 2023. 
+Thus, in our opinion, the limited analysis performed by the authors is not sufficient to claim that the same relation applies across cosmic time. There is also an additional complication when UV and optical diagnostics are compared. The optical emission may contain contributions from regions that are strongly obscured or completely invisible in the UV. Moreover, UV lines may preferentially originate from hotter and inner regions of the nebula, whereas the local comparison is dominated by optical diagnostics. Differences between UV- and optical-based densities therefore cannot automatically be attributed only to their different n_M values. Therefore, UV and optical diagnostics may not weigh the same gas, even within the same galaxy. The authors should either perform a more controlled object-by-object comparison using systems with several diagnostics measured in the same data, or significantly reduce the claims based on the external samples. We believe that the paper would be clearer and stronger if it were mainly centred on Orion, where the observational evidence is much more solid.
+
+7. The paper convincingly shows the presence of a density hierarchy in Orion, but it is less clear what can actually be inferred from this hierarchy beyond the qualitative statement that the density distribution is broad. Can the proposed method be used as a practical diagnostic tool to recover physical information from observed spectra? For example, can it constrain the width, shape or dense-gas fraction of the distribution without relying on a full photoionization model? Or is it mainly a demonstration that single-density measurements are incomplete? This point should be developed much more clearly. At present, the method looks potentially similar to a strongly improved version of the standard direct-method approach, where several density diagnostics are used simultaneously to infer a distribution rather than one single value. If this is the intended practical application, the authors should explain its limits, required data quality, degeneracies and relation to multi-density photoionization modelling.
+
+Overall, we find the paper interesting and potentially important, and the Orion data are particularly impressive. However, in our opinion, the novelty and broader implications claimed by the authors go beyond what is directly supported by the present analysis. The manuscript should be substantially revised to focus more clearly on the genuinely new results, to test the robustness and uniqueness of the forward-model interpretation, and to demonstrate more directly what physical information can be extracted from the observed diagnostic hierarchy.
+
+
+Referee #2 (Remarks to the Author):
+
+I co-reviewed this manuscript with one of the reviewers who provided the listed reports.
+
+
+Referee #3 (Remarks to the Author):
+
+See attached referee report.
+
+
+Referee #4 (Remarks to the Author):
+
+I co-reviewed this manuscript with one of the reviewers who provided the listed reports.
+
+
+This email has been sent through the Springer Nature Manuscript Tracking System NY-610A-SN&MTS
+
+Confidentiality Statement:
+
+This e-mail is confidential and subject to copyright. Any unauthorised use or disclosure of its contents is prohibited. If you have received this email in error please notify our Manuscript Tracking System Helpdesk team at https://digitalsubmissions.freshdesk.com/support/tickets/new .
+
+Details of the confidentiality and pre-publicity policy may be found here http://www.nature.com/authors/policies/confidentiality.html
+
+Privacy Policy | Update Profile
