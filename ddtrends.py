@@ -11,7 +11,7 @@ William Henney, whenney@gmail.com, 2026
 from typing import Literal, get_args
 
 import numpy as np
-from scipy.special import hyp2f1, erfc
+from scipy.special import hyp2f1, erfc, log_ndtr
 from scipy.integrate import quad
 from numpy.polynomial.legendre import leggauss
 from numpy.typing import ArrayLike, NDArray
@@ -407,8 +407,15 @@ class LogNormalPDF:
 
         This is always volume-weighted
         """
-        # TODO
-        ...
+        z0 = self.zmin
+
+        # log Q(z) = log Phi(-z)
+        logQ0 = log_ndtr(-z0)
+        logQ2 = log_ndtr(-(z0 + 2 * self.sigma))
+
+        log_nrms = self.logn_mu - self.sigma**2 + 0.5 * (logQ0 - logQ2)
+
+        return np.exp(log_nrms)
 
 
 def apparent_density_lognormal(R: ConcreteRatio, pdf: LogNormalPDF):
